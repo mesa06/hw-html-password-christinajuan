@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="js/jquery.js"></script>
+    <script src="js/seedrandom.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" />
+    
+    <style>
+    h1 {
+      	text-align: center;
+      	border-bottom: 2px solid #009;
+      	margin-bottom: 50px;
+    }
+    #randomTable {
+        margin: 1.5em 0 0 0;
+      	padding-left: 5em;
+      	border: 1px solid #C63300;
+        font-weight: bold;
+        font-family: monospace;
+        font-size: 2.0em;
+        color:#008844;
+        margin: 20px;
+    }
+    #btnGo{}
+    body{
+          font-weight: bold;
+          /*background-color:#F0BBFF;*/
+          margin: 20px;
+          background: linear-gradient(to right, /* or 90deg */
+              #CCEEFF 50%, #CCCCFF 0);
+          background-size: 100px 100%;
+    }
+    </style>
+    
+   
+</head>
+
+
+<body>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#howPage">緣起</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">使用說明</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">參考資料 <b class="glyphicon glyphicon-search"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <a class="navbar-brand" href="#howPage">學生-阮鈺婷</a>
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div data-role="content" data-position="fixed" data-role="page" >
+  
+<div class="jumbotron">
+  <h1 style="color:gray;">
+       請輸入亂數表的編號：
+       <input type="text" id="txtSeed" value="1234"  />
+    &nbsp;
+    <input type="button" id="btnGoMath"  
+    style="background-color:#E38EFF" 
+    class=" btn-lg"
+    value="產生亂數表-數字" 
+    />
+    <input type="button" id="btnGoEng"  
+    style="background-color:#E38EFF" 
+    class=" btn-lg"
+    value="產生亂數表-英文" 
+  </h1>
+  
+</div>
+</div>
+   
+    
+<div id="randomTable" class="container">
+   
+    
+    <script>
+    
+    $("#btnGoMath").click(function () {
+      var result = "";
+    	// 純數字:
+    	var sPool = "0123456789";
+        // 數字+小寫字母: (去除 l, o)
+      //var sPool = "abcdefghijkmnpqrstuvwxyz0123456789";
+        // 數字+大小寫字母: (去除 I, O, l, o)
+      //var sPool = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz0123456789";
+    
+        Math.seedrandom($("#txtSeed").val()); // 設定亂數種子
+    	var iRandom = 0; var ch = "?";
+    	for (iRow = 1; iRow <= 10; iRow++) {
+    		var sLine = (iRow + 100).toString().substr(1, 2) + ": ";
+    		for (iCol = 1; iCol <= 10; iCol++) {
+    			iRandom = Math.floor(Math.random() * sPool.length);
+    			ch = sPool.substr(iRandom, 1);
+    			sLine += ch;
+    		}
+    		result += sLine + "<br>";
+    	}
+    	$("#randomTable").html(result);
+    });
+    
+    $("#btnGoEng").click(function () {
+      var result = "";
+    	// 純數字:
+    	//var sPool = "0123456789";
+        // 數字+小寫字母: (去除 l, o)
+      //var sPool = "abcdefghijkmnpqrstuvwxyz0123456789";
+        // 數字+大小寫字母: (去除 I, O, l, o)
+      var sPool = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz0123456789";
+    
+        Math.seedrandom($("#txtSeed").val()); // 設定亂數種子
+    	var iRandom = 0; var ch = "?";
+    	for (iRow = 1; iRow <= 10; iRow++) {
+    		var sLine = (iRow + 100).toString().substr(1, 2) + ": ";
+    		for (iCol = 1; iCol <= 10; iCol++) {
+    			iRandom = Math.floor(Math.random() * sPool.length);
+    			ch = sPool.substr(iRandom, 1);
+    			sLine += ch;
+    		}
+    		result += sLine + "<br>";
+    	}
+    	$("#randomTable").html(result);
+    });
+    
+    </script>
+ </div>
+ 
+
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
